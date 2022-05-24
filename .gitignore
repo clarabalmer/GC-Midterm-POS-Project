@@ -1,0 +1,17 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Mac
+.DS_Store
+
+# Mavon
+log/
+target/
+
+*.class
+/bin
+
+/cats
+/.metadata/
