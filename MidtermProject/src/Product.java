@@ -1,6 +1,5 @@
 
 public class Product {
-	//name, category, description, price, boolean taxable
 	
 	//fields:
 	private String name;
