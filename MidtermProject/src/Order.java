@@ -6,7 +6,7 @@ public class Order {
 	//fields:
 	private Catalog catalog;
 	private int[] orderQuantities;
-	private Payment orderPayment;
+	private Payment orderPayment; //do we need this here?
 	private double subtotal;
 	private double totalTax;
 	private double total;
@@ -15,7 +15,7 @@ public class Order {
 	//constructor:
 	public Order() {}
 	public Order(Catalog catalog) {
-		orderQuantities = new int[catalog.getProducts.size()];
+		orderQuantities = new int[catalog.getProducts().size()];
 	}
 	
 	//methods:
@@ -25,12 +25,12 @@ public class Order {
 	}
 	//prints ordered items and quantities, sums subtotal and tax, prints subtotal, totalTax, and total.
 	public void displaySummary() {
-		for (int i = 0; i < catalog.getProducts.size(); i++) {
+		for (int i = 0; i < catalog.getProducts().size(); i++) {
 			if (orderQuantities[i] != 0) {
-				System.out.println(catalog.getProducts.get[i].getName() + " x " + orderQuantities[i] + ":  $" + (orderQuantities[i] * catalog.getProducts.get[i].getPrice()));
-				subtotal += (orderQuantities[i] * catalog.getProducts.get[i].getPrice());
-				if (catalog.getProducts.get[i].getTaxable()) {
-					totalTax += catalog.TAX_RATE * orderQuantities[i] * catalog.getProducts.get[i].getPrice();
+				System.out.println(catalog.getProducts().get(i).getName() + " x " + orderQuantities[i] + ":  $" + (orderQuantities[i] * catalog.getProducts().get(i).getPrice()));
+				subtotal += (orderQuantities[i] * catalog.getProducts().get(i).getPrice());
+				if (catalog.getProducts().get(i).getTaxable()) {
+					totalTax += catalog.TAX_RATE * orderQuantities[i] * catalog.getProducts().get(i).getPrice();
 				}
 			}
 		}
