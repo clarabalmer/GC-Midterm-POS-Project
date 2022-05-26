@@ -7,7 +7,11 @@ public class PointOfSaleApp {
 	
 
 	public static void main(String[] args) {
+		generalStore = new Catalog();
 		fillGeneralStore();
+		System.out.println("Welcome to our General Store!");
+		System.out.println("Here is the menu: ");
+		generalStore.printCatalog();
 		
 
 	}
