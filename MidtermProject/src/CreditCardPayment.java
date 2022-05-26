@@ -9,13 +9,12 @@ public class CreditCardPayment extends Payment {
 	
 	//constructor takes in the subtotal, three CC fields
 	
-	
-<<<<<<< Updated upstream
+
 	public String creditcardnumber;
 	public String experationdate;
 	public String CVV;
 	
-=======
+
 	String CardName; 
 	String ExpirationDate;
 	String CreditCardNumber;
@@ -51,5 +50,5 @@ public class CreditCardPayment extends Payment {
 		
 		PrintReceipt();
 	}
->>>>>>> Stashed changes
+
 }
