@@ -14,7 +14,10 @@ public abstract class Payment {
 	
 	//getters for all, setter for subtotal
 
+<<<<<<< HEAD
+=======
 	
+>>>>>>> 0c1b82ff2779d6cedd4516dc591e80dfdb0a698b
 	
 	//private double subtotal;
 	//private double taxRate;
@@ -73,6 +76,8 @@ public abstract class Payment {
 	TODO add a method to print receipt 
 	TODO add a method that prints out what type of payments the customer wants and then 
 
+<<<<<<< HEAD
+=======
 	// Fields:
 	// subtotal
 	// taxRate
@@ -122,4 +127,5 @@ public abstract class Payment {
 	 */
 
 
+>>>>>>> 0c1b82ff2779d6cedd4516dc591e80dfdb0a698b
 }
