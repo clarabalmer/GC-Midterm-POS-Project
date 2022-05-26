@@ -22,6 +22,7 @@ public class PointOfSaleApp {
 			try{
 				itemNum = scnr.nextInt();
 			}catch(Exception e) {
+				scnr.next();
 				System.out.println("Error: Invalid item selection.\n");
 			}
 			
@@ -47,6 +48,7 @@ public class PointOfSaleApp {
 			try{
 				quantity = scnr.nextInt();
 			}catch(Exception e) {
+				scnr.next();
 				System.out.println("Error: Invalid quantity entered.\n");
 			}
 			
@@ -69,8 +71,13 @@ public class PointOfSaleApp {
 		String in = "";
 		
 		do {
-			System.out.print("");
-		}
+			
+			try {
+				System.out.print("Please enter payment method (cash, card, or check): ");
+				in = scnr.nextLine();
+			}
+			
+		} while (!in.equals("cash") && !in.equals("card") && !in.equals("check"));
 		
 		
 		return paymentType;
