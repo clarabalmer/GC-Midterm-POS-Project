@@ -7,4 +7,10 @@ public class CreditCardPayment extends Payment {
 	//(all strings, use regex to validate)
 	
 	//constructor takes in the subtotal, three CC fields
+	
+	
+	public String creditcardnumber;
+	public String experationdate;
+	public String CVV;
+	
 }
