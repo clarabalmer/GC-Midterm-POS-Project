@@ -10,6 +10,10 @@ public class CashPayment extends Payment {
 	//method: tell customer what their change is
 	
 	//getters and setters: setAmountTendered, getChange
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 	
 	
 	// Fields 
@@ -19,6 +23,10 @@ public class CashPayment extends Payment {
 	double change = 0; // change to be made
 	
 	
+<<<<<<< Updated upstream
+=======
+	public void payCash (Order order) {
+>>>>>>> Stashed changes
 	
 	//Declare constant values
 	final int twentyValue = 20;
@@ -39,9 +47,13 @@ public class CashPayment extends Payment {
 
 	//Constructors:
 	
+<<<<<<< Updated upstream
 	public CashPayment (int subtotal, int amountTendered) {
 		super(subtotal);
 		this.amountTendered=amountTendered;
+=======
+	change = amountTendered - purchaseAmount;
+>>>>>>> Stashed changes
 	
 	}
 	//Methods 
@@ -53,4 +65,8 @@ public class CashPayment extends Payment {
 	}
 	
 	
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
