@@ -8,6 +8,7 @@ public class Catalog {
 	
 	public Catalog() {
 		products = new ArrayList<>();
+		size = products.size();
 	}
 	
 	public void printCatalog() {
@@ -21,6 +22,7 @@ public class Catalog {
 	public boolean addProduct(Product p) {
 		if(products.indexOf(p) == -1) {
 			products.add(p);
+			size++;
 			return true;
 		}
 		

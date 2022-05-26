@@ -13,21 +13,22 @@ public class Order {
 	
 	
 	//constructor:
-	public Order() {}
 	public Order(Catalog catalog) {
+		setCatalog(catalog);
 		orderQuantities = new int[catalog.getProducts().size()];
 	}
 	
 	//methods:
 	//adds quantity to value at index ID in orderQuantities array
 	public void addProduct(int ID, int quantity) {
-		orderQuantities[ID] += quantity;
+		orderQuantities[ID - 1] += quantity;
 	}
 	//prints ordered items and quantities, sums subtotal and tax, prints subtotal, totalTax, and total.
 	public void displaySummary() {
 		for (int i = 0; i < catalog.getProducts().size(); i++) {
 			if (orderQuantities[i] != 0) {
-				System.out.println(catalog.getProducts().get(i).getName() + " x " + orderQuantities[i] + ":  $" + (orderQuantities[i] * catalog.getProducts().get(i).getPrice()));
+				System.out.printf("%-6s%-1s%-1s%-1s%s%.2f%n", catalog.getProducts().get(i).getName(), 
+						" x ", orderQuantities[i], ":  ", "$", (orderQuantities[i] * catalog.getProducts().get(i).getPrice()));
 				subtotal += (orderQuantities[i] * catalog.getProducts().get(i).getPrice());
 				if (catalog.getProducts().get(i).getTaxable()) {
 					totalTax += catalog.TAX_RATE * orderQuantities[i] * catalog.getProducts().get(i).getPrice();
@@ -35,9 +36,9 @@ public class Order {
 			}
 		}
 		System.out.println("========================");
-		System.out.println("Subtotal: $" + subtotal);
-		System.out.println("Tax: $" + totalTax);
-		System.out.println("Total: $" + (subtotal + totalTax));
+		System.out.printf("%-11s%s%5.2f%n", "Subtotal: ", "$", subtotal);
+		System.out.printf("%-11s%s%5.2f%n", "Tax: ", "$", totalTax);
+		System.out.printf("%-11s%s%5.2f%n", "Total: ", "$", (subtotal + totalTax));
 	}
 	
 	//getters/setters:

@@ -9,10 +9,36 @@ public class PointOfSaleApp {
 
 	public static void main(String[] args) {
 		generalStore = new Catalog();
+		scnr = new Scanner(System.in);
 		fillGeneralStore();
 		System.out.println("Welcome to our General Store!");
 		System.out.println("Here is the menu: ");
 		generalStore.printCatalog();
+		
+		Order userOrder = new Order(generalStore);
+		
+		boolean repeatOrder = true;
+		while (repeatOrder) {
+		userOrder.addProduct(getItemNum(generalStore), getQuantity());
+		System.out.print("Would you like to order more?");
+		repeatOrder = yesOrNo(scnr);
+		}
+		
+		userOrder.displaySummary();
+		
+	}
+	
+	public static boolean yesOrNo(Scanner scnr) {
+		System.out.print(" y/n ");
+		String response = scnr.nextLine();
+		if (response.equalsIgnoreCase("y")) {
+			return true;
+		} else if (response.equalsIgnoreCase("n")) {
+			return false;
+		} else {
+			System.out.print("I didn't understand. Please try again. ");
+			return yesOrNo(scnr);
+		}
 		
 	}
 	
@@ -23,12 +49,15 @@ public class PointOfSaleApp {
 	 * @return the item number entered by user
 	 */
 	private static int getItemNum(Catalog catalog) {
+		String userNumString = "";
 		int itemNum = -1;
 		
 		do{
 			System.out.print("Enter item number: ");
+			
 			try{
-				itemNum = scnr.nextInt();
+				userNumString = scnr.nextLine();
+				itemNum = Integer.parseInt(userNumString);
 			}catch(Exception e) {
 				scnr.next();
 				System.out.println("Error: Invalid item selection.\n");
@@ -49,12 +78,14 @@ public class PointOfSaleApp {
 	 * @return the quantity entered by user
 	 */
 	private static int getQuantity() {
+		String userQuantString = "";
 		int quantity = -1;
 		
 		do{
 			System.out.print("Enter desired quantity: ");
 			try{
-				quantity = scnr.nextInt();
+				userQuantString = scnr.nextLine();
+				quantity = Integer.parseInt(userQuantString);
 			}catch(Exception e) {
 				scnr.next();
 				System.out.println("Error: Invalid quantity entered.\n");
@@ -65,7 +96,6 @@ public class PointOfSaleApp {
 			}
 			
 		} while (quantity < 1);
-		
 		return quantity;
 	}
 	
