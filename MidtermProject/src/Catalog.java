@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Catalog {
 	
 	private ArrayList<Product> products;
+	private int size;
 	public final double TAX_RATE = 0.06;
 	
 	public Catalog() {
@@ -28,5 +29,9 @@ public class Catalog {
 	
 	public ArrayList<Product> getProducts() {
 		return products;
+	}
+	
+	public int getSize() {
+		return size;
 	}
 }
