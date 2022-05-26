@@ -74,11 +74,25 @@ public class PointOfSaleApp {
 			
 			try {
 				System.out.print("Please enter payment method (cash, card, or check): ");
-				in = scnr.nextLine();
+				in = scnr.nextLine().toLowerCase();
+			} catch(Exception e) {}
+			
+			if(!in.equals("cash") && !in.equals("card") && !in.equals("check")) {
+				System.out.println("We only accept cash, card, and check\n");
 			}
 			
 		} while (!in.equals("cash") && !in.equals("card") && !in.equals("check"));
 		
+		
+		if(in.equals("cash")) {
+			paymentType = new CashPayment();
+		}
+		else if(in.equals("card")) {
+			paymentType = new CreditCardPayment();
+		}
+		else {
+			paymentType = new CheckPayment();
+		}
 		
 		return paymentType;
 		
