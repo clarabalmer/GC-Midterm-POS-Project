@@ -1,6 +1,6 @@
 
 public abstract class Payment {
-<<<<<<< Updated upstream
+
 	//Fields:
 	//subtotal
 	//taxRate
@@ -13,6 +13,7 @@ public abstract class Payment {
 	//override tostring
 	
 	//getters for all, setter for subtotal
+
 	
 	
 	//private double subtotal;
@@ -27,7 +28,11 @@ public abstract class Payment {
 	
 	
 	public  Payment (double subtotal) {
+
+		this.getSubtotal=Subtotal;
+
 		this.subtotal=subtotal;
+
 	}
 	
 	/*
@@ -42,7 +47,32 @@ public abstract class Payment {
 	 * public double gettaxRate() { return taxRate; }
 	 */
 	
-=======
+
+
+	public double gettaxAmount() {
+		return taxAmount;
+	}
+	
+	/*
+	 * public double gettotal() { return total; }
+	 */
+	
+	public Payment(Order order) {
+		subtotal = order.getSubtotal;
+		
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Payment [subtotal=" + subtotal + ", taxRate=" + taxRate + ", taxAmount=" + taxAmount + ", total="
+				+ total + "]";
+	
+	}
+	
+	TODO add a method to print receipt 
+	TODO add a method that prints out what type of payments the customer wants and then 
+
 	// Fields:
 	// subtotal
 	// taxRate
@@ -64,7 +94,7 @@ public abstract class Payment {
 		taxAmount = order.getTotalTax();
 		subtotal = order.getSubTotal();
 		total = taxAmount+subtotal;
->>>>>>> Stashed changes
+
 
 	}
 
@@ -80,16 +110,16 @@ public abstract class Payment {
 		return "Payment [taxAmount=" + taxAmount + "]";
 
 	}
-<<<<<<< Updated upstream
+
 	
 	TODO add a method to print receipt 
 	TODO add a method that prints out what type of payments the customer wants and then 
-=======
+
 
 	/*
 	 * TODO add a method to print receipt TODO add a method that prints out what
 	 * type of payments the customer wants and then
 	 */
 
->>>>>>> Stashed changes
+
 }
