@@ -12,9 +12,7 @@ public abstract class Payment {
 	//override tostring
 	
 	//getters for all, setter for subtotal
-<<<<<<< Updated upstream
-=======
-	
+
 	
 	//private double subtotal;
 	//private double taxRate;
@@ -67,5 +65,5 @@ public abstract class Payment {
 	
 	TODO add a method to print receipt 
 	TODO add a method that prints out what type of payments the customer wants and then 
->>>>>>> Stashed changes
+
 }
