@@ -13,10 +13,11 @@ public class Catalog {
 	
 	public void printCatalog() {
 		for(int i = 0; i < products.size(); i++) {
-			
-			// TODO: implement printf instead of println
-			System.out.println((i+1) + " | " + products.get(i).getName());
+			System.out.printf("\n%3d", i + 1);
+			System.out.printf("%-33s", " | " + products.get(i).getName());
+			System.out.printf("$%6.2f", products.get(i).getPrice());
 		}
+		System.out.println();
 	}
 	
 	public boolean addProduct(Product p) {
