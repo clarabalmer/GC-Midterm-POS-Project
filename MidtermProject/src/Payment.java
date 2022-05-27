@@ -17,9 +17,9 @@ public abstract class Payment {
 
 	}
 
-	public abstract void Pay();
+	public abstract void pay();
 	
-	public void PrintReceipt() {
+	public void printReceipt() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
 		System.out.printf("%40s%n%35s%n%n%n%n", "Receipt Of Sale", "GC General Store");

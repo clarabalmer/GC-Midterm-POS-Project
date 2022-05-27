@@ -28,7 +28,7 @@ public class CreditCardPayment extends Payment {
 		scnr = new Scanner(System.in);
 	}
 	
-	public void Pay() {
+	public void pay() {
 		
 		System.out.println("Please enter your name on the Credit Card");
 		CardName = scnr.nextLine();
@@ -48,7 +48,7 @@ public class CreditCardPayment extends Payment {
 		
 		ExpirationDate =scnr.nextLine();
 		
-		PrintReceipt();
+		printReceipt();
 	}
 
 }

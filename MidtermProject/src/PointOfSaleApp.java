@@ -26,6 +26,9 @@ public class PointOfSaleApp {
 		
 		userOrder.displaySummary();
 		
+		Payment payment = getPaymentType(userOrder);
+		payment.pay();
+		
 	}
 	
 	public static boolean yesOrNo(Scanner scnr) {
@@ -104,7 +107,7 @@ public class PointOfSaleApp {
 	 * 
 	 * @return a new payment object of the type to be used by the user
 	 */
-	private static Payment getPaymentType() {
+	private static Payment getPaymentType(Order order) {
 		Payment paymentType;
 		String in = "";
 		
@@ -123,13 +126,13 @@ public class PointOfSaleApp {
 		
 		
 		if(in.equals("cash")) {
-			paymentType = new CashPayment();
+			paymentType = new CashPayment(order);
 		}
 		else if(in.equals("card")) {
-			paymentType = new CreditCardPayment();
+			paymentType = new CreditCardPayment(order);
 		}
 		else {
-			paymentType = new CheckPayment();
+			paymentType = new CheckPayment(order);
 		}
 		
 		return paymentType;

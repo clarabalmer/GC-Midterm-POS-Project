@@ -19,7 +19,7 @@ public class CheckPayment extends Payment{
 		scnr = new Scanner(System.in);
 	}
 	
-	public void Pay() {
+	public void pay() {
 		
 		System.out.println("Please enter your Check Number");
 		CheckNumber = scnr.nextLine();
@@ -27,7 +27,7 @@ public class CheckPayment extends Payment{
 		String CheckNumber = "Check Number";
 		Pattern pattern = Pattern.compile("(\\d{4})");
 
-		PrintReceipt();
+		printReceipt();
 		
 	}
 }

@@ -111,7 +111,7 @@ public class CashPayment extends Payment {
 		change = amountTendered - purchaseAmount;
 
 	}
-	public void Pay () {
+	public void pay () {
 		
 		
 		
@@ -122,7 +122,7 @@ public class CashPayment extends Payment {
 		System.out.println("Enter the amount of cash tendered:");
 		purchaseAmount = scnr.nextDouble();
 		
-		PrintReceipt(); 
+		printReceipt(); 
 		
 	}
 	
