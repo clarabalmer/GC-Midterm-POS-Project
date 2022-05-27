@@ -1,3 +1,5 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class CheckPayment extends Payment{
 	//fields:
@@ -6,15 +8,26 @@ public class CheckPayment extends Payment{
 	//constructor takes in the subtotal, check number
 	
 	
-	String FirstName;
-	String LastName;
 	String CheckNumber;
 	
 	
-	CheckPayment(double Value, String FirstName, String LastName, String CheckNumber) {
-		super(Value);
-		this.FirstName=FirstName;
-		this.LastName=LastName;
-		this.CheckNumber = CheckNumber;
+	Scanner scnr;
+	
+	CheckPayment(Order order) {
+		super(order);
+		
+		scnr = new Scanner(System.in);
+	}
+	
+	public void Pay() {
+		
+		System.out.println("Please enter your Check Number");
+		CheckNumber = scnr.nextLine();
+		
+		String CheckNumber = "Check Number";
+		Pattern pattern = Pattern.compile("(\\d{4})");
+
+		PrintReceipt();
+		
 	}
 }
