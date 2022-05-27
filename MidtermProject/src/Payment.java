@@ -22,11 +22,11 @@ public abstract class Payment {
 	public void printReceipt() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
-		System.out.printf("%40s%n%35s%n%n%n%n", "Receipt Of Sale", "GC General Store");
-		System.out.println("----------------------------------------------------\n");
-		System.out.printf("%25s%n%n", formatter.format(date));
-		System.out.printf("%4s%8s%30s%n", "QTY", "ITEM", "AMT");
-		System.out.println("----------------------------------------------------\n");
+		System.out.printf("%n%n%30s%n%n%30s%n%n", "Receipt Of Sales", "GC General Store");
+		System.out.println("--------------------------------------------\n");
+		System.out.printf("%32s%n%n", formatter.format(date));
+		System.out.printf("%4s%8s%31s%n", "QTY", "ITEM", "AMT");
+		System.out.println("--------------------------------------------\n");
 		
 		for(int i = 0; i < order.getOrderQuantities().length; i++) {
 			
@@ -37,17 +37,17 @@ public abstract class Payment {
 				double curAmt = order.getCatalog().getProducts().get(i).getPrice() * curQuantity;
 				
 				System.out.printf(" %-7d", curQuantity); 
-				System.out.printf(" %-25s", curItem);
-				System.out.printf(" %7f", curAmt);
+				System.out.printf("%-23s", curItem);
+				System.out.printf("%12.2f%n", curAmt);
 
 			}
 		}
 		
-		System.out.println("----------------------------------------------------\n");
-		System.out.printf(" %-28s%8.2f", "Subtotal", subtotal);
-		System.out.printf(" %-37s%8.2f", "Tax", taxAmount);
-		System.out.printf(" %-35s%8.2f", "Total", total);
-		System.out.println("----------------------------------------------------\n");
+		System.out.println("--------------------------------------------\n");
+		System.out.printf("%9s%34.2f%n", "Subtotal", subtotal);
+		System.out.printf("%4s%39.2f%n", "Tax", taxAmount);
+		System.out.printf("%6s%37.2f%n", "Total", total);
+		System.out.println("--------------------------------------------\n");
 	}
 		
 	
