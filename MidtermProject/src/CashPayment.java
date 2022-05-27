@@ -84,6 +84,8 @@ public class CashPayment extends Payment {
 		   System.out.println("Coins: Quarters = " + quarterChange + ", Dimes = " +
 		   dimeChange + ", Nickles = " + nickelChange + ", Pennies = " +pennyChange);
 		   
+		   
+		   printReceipt(); 
 	}
 
 
