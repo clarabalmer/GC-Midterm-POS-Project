@@ -1,52 +1,50 @@
 import java.util.Scanner;
 
 public class CashPayment extends Payment {
-	//fields:
-	//amount tendered
-	//change
+	// fields:
+	// amount tendered
+	// change
 
-	//constructor takes in the subtotal and cashtendered
+	// constructor takes in the subtotal and cashtendered
 	//
-	//method: tell customer what their change is
-	
-	//getters and setters: setAmountTendered, getChange
+	// method: tell customer what their change is
 
-	
-	
-	
-	 //Declare contant values
-	   final int twentyValue = 20;
-	   final int tenValue = 10;
-	   final int fiveValue = 5;
-	   final int dollarValue = 1;
-	   final int quarterValue = 25;
-	   final int dimeValue = 10;
-	   final int nickelValue = 5;
-	   final int convertCoins = 100; //converts coin values to int
+	// getters and setters: setAmountTendered, getChange
 
-	// Fields 
-	
-	double amountTendered; //Amount of cash customer paid with
-	double purchaseAmount; //Total cost of purchase
+	// Declare contant values
+	final int twentyValue = 20;
+	final int tenValue = 10;
+	final int fiveValue = 5;
+	final int dollarValue = 1;
+	final int quarterValue = 25;
+	final int dimeValue = 10;
+	final int nickelValue = 5;
+	final int convertCoins = 100; // converts coin values to int
+
+	// Fields
+
+	double amountTendered; // Amount of cash customer paid with
+	double purchaseAmount; // Total cost of purchase
 	double change = 0; // change to be made
-	
 
-	 //Change amounts initialized to 0 incase none are needed to make change
-	   int twentyChange = 0;
-	   int tenChange = 0;
-	   int fiveChange = 0;
-	   int dollarChange = 0;
-	   int quarterChange = 0;
-	   int nickelChange = 0;
-	   int dimeChange = 0;
-	   int pennyChange = 0;
+	// Change amounts initialized to 0 incase none are needed to make change
+	int twentyChange = 0;
+	int tenChange = 0;
+	int fiveChange = 0;
+	int dollarChange = 0;
+	int quarterChange = 0;
+	int nickelChange = 0;
+	int dimeChange = 0;
+	int pennyChange = 0;
+
+	Scanner scnr;
 	
 	public void giveChange () {
 	
-	Scanner scan = new Scanner(System.in);
 	
-	System.out.println("Entter the Amount: ");
-	amountTendered = scan.nextDouble();
+	
+	System.out.println("Enter the Amount: ");
+	amountTendered = scnr.nextDouble();
 	
 	
 	change = amountTendered - change;
@@ -54,7 +52,7 @@ public class CashPayment extends Payment {
 	while(change < 0) {
 		System.out.printf("\n The customer still owees $%.2f", (float) change);
 		System.out.printf("\n\nEnter new amount of cash tendered: ");
-		amountTendered = scan.nextDouble();
+		amountTendered = scnr.nextDouble();
 		
 	}
 	
@@ -100,47 +98,32 @@ public class CashPayment extends Payment {
 		   ", $5 = " + fiveChange + ", $1 = " + dollarChange);
 		   System.out.println("Coins: Quarters = " + quarterChange + ", Dimes = " +
 		   dimeChange + ", Nickles = " + nickelChange + ", Pennies = " +pennyChange);
-	
+		   
+	}
 
-	public void payCash (Order order) {
-
-	
-	//Declare constant values
-	final int twentyValue = 20;
-	final int tenValue = 10;
-	final int fiveValue = 5;
-	final int dollarValue = 1;
-	final int quarterValue = 25;
-	final int dimeValue = 10;
-	final int nickelValue = 5;
-	final int convertCoins = 100; //converts coin values to int
-	
-	  //Create scanner object
-	   Scanner keyboard = new Scanner(System.in);
-	   
-	   //Get purchase amount from user
-	   System.out.println("Enter the amount of cash tendered:");
-	   purchaseAmount = keyboard.nextDouble();
 
 	//Constructors:
-	
 
-	public CashPayment (int subtotal, int amountTendered) {
-		super(subtotal);
-		this.amountTendered=amountTendered;
+	public CashPayment(Order order) {
+		super(order);
+		//this.amountTendered = amountTendered;
 
-	change = amountTendered - purchaseAmount;
+		change = amountTendered - purchaseAmount;
 
-	
 	}
-	//Methods 
-	
-	
-	public void giveChange () {
+	public void Pay () {
 		
-
+		
+		
+		//Create scanner object
+		scnr = new Scanner(System.in);
+		
+		//Get purchase amount from user
+		System.out.println("Enter the amount of cash tendered:");
+		purchaseAmount = scnr.nextDouble();
+		
+		PrintReceipt(); 
 		
 	}
 	
-
 }
