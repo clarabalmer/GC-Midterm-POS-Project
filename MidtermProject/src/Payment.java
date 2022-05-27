@@ -3,10 +3,10 @@ import java.util.Date;
 
 public abstract class Payment {
 
-	private double taxAmount;
-	private double subtotal;
-	private double total;
-	private Order order;
+	protected double taxAmount;
+	protected double subtotal;
+	protected double total;
+	protected Order order;
 
 	public Payment(Order order) {
 		this.order = order;

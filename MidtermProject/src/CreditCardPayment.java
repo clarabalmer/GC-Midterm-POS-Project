@@ -33,7 +33,7 @@ public class CreditCardPayment extends Payment {
 		System.out.println("Please enter your name on the Credit Card");
 		CardName = scnr.nextLine();
 		
-		System.out.println("Please enter your Credit Card Number: \n, ACCEDPTED : VISA, MASTERCARD, AMEX");
+		System.out.println("Please enter your Credit Card Number: \n, ACCEPTED : VISA, MASTERCARD, AMEX");
 		
 	//String CreditCardNumber =	"^(?:4[0-9]{12}(?:[0-9]{3})? | 5[1-5][0-9]{14} |	3[47][0-9]{13})$";
 		

@@ -1,17 +1,7 @@
 import java.util.Scanner;
 
 public class CashPayment extends Payment {
-	// fields:
-	// amount tendered
-	// change
-
-	// constructor takes in the subtotal and cashtendered
-	//
-	// method: tell customer what their change is
-
-	// getters and setters: setAmountTendered, getChange
-
-	// Declare contant values
+	// Constants
 	final int twentyValue = 20;
 	final int tenValue = 10;
 	final int fiveValue = 5;
@@ -22,12 +12,11 @@ public class CashPayment extends Payment {
 	final int convertCoins = 100; // converts coin values to int
 
 	// Fields
-
 	double amountTendered; // Amount of cash customer paid with
 	double purchaseAmount; // Total cost of purchase
 	double change = 0; // change to be made
 
-	// Change amounts initialized to 0 incase none are needed to make change
+	// Change amounts initialized to 0 in case none are needed to make change
 	int twentyChange = 0;
 	int tenChange = 0;
 	int fiveChange = 0;
@@ -39,24 +28,20 @@ public class CashPayment extends Payment {
 
 	Scanner scnr;
 	
-	public void giveChange () {
-	
-	
-	
-	System.out.println("Enter the Amount: ");
-	amountTendered = scnr.nextDouble();
-	
-	
-	change = amountTendered - change;
-	
-	while(change < 0) {
-		System.out.printf("\n The customer still owees $%.2f", (float) change);
-		System.out.printf("\n\nEnter new amount of cash tendered: ");
-		amountTendered = scnr.nextDouble();
+	public void pay() {
 		
-	}
+		System.out.println("Enter the Amount: ");
+		amountTendered = scnr.nextDouble();
+		change = amountTendered - total;
 	
-	float totalchange = (float)change;
+		while(change < 0) {
+			System.out.printf("\n The customer still owes $%.2f", (-1.0 * (float) change));
+			System.out.printf("\n\nEnter new amount of cash tendered: ");
+			amountTendered = scnr.nextDouble();
+			change += amountTendered;
+		}
+	
+		float totalchange = (float)change;
 	
 		while (change >= dollarValue) {
 			if (change >= twentyValue) {
@@ -107,23 +92,19 @@ public class CashPayment extends Payment {
 	public CashPayment(Order order) {
 		super(order);
 		//this.amountTendered = amountTendered;
-
-		change = amountTendered - purchaseAmount;
-
-	}
-	public void pay () {
-		
-		
-		
-		//Create scanner object
 		scnr = new Scanner(System.in);
-		
-		//Get purchase amount from user
-		System.out.println("Enter the amount of cash tendered:");
-		purchaseAmount = scnr.nextDouble();
-		
-		printReceipt(); 
-		
+
 	}
+//	public void pay () {
+//		//Create scanner object
+//		scnr = new Scanner(System.in);
+//		
+//		//Get purchase amount from user
+//		System.out.println("Enter the amount of cash tendered:");
+//		purchaseAmount = scnr.nextDouble();
+//		
+//		printReceipt(); 
+//		
+//	}
 	
 }
