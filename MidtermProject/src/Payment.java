@@ -8,17 +8,27 @@ public abstract class Payment {
 	protected double total;
 	protected Order order;
 
+	
+	/**
+	 * Superclass constructor which sets amounts owed and calculates total for subclasses
+	 * 
+	 * @param order the Order object of which the totals will be pulled from
+	 */
 	public Payment(Order order) {
 		this.order = order;
 		taxAmount = order.getTotalTax();
 		subtotal = order.getSubtotal();
 		total = taxAmount+subtotal;
-
-
 	}
 
+	//Abstract method to be implemented differently depending on payment method, handles io and printing receipt
 	public abstract void pay();
 	
+	/**
+	 * output method for printing a receipt for an order
+	 * 
+	 * @TimeComplexity "O(1)"
+	 */
 	public void printReceipt() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = new Date();
@@ -53,9 +63,8 @@ public abstract class Payment {
 	
 	@Override
 	public String toString() {
-		return "Payment [taxAmount=" + taxAmount + "]";
+		return "Payment [taxAmount=" + taxAmount + "] [total=" + total + "] subtotal=" + subtotal + "]";
 
 	}
-
 
 }

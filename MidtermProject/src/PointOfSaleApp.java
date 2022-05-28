@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * PointOfSaleApp is the main class for the POS system. Collects user input for items
+ * to add to the order, collects payment type and calls appropriate methods for completing
+ * the order and printing the receipt
+ * 
+ */
 public class PointOfSaleApp {
 	
 
@@ -31,6 +37,12 @@ public class PointOfSaleApp {
 		
 	}
 	
+	/**
+	 * Scanner method to translate a 'y' or 'n' input into an equivalent boolean
+	 * 
+	 * @param scnr Scanner object used for console input
+	 * @return true if user enters 'y', false otherwise
+	 */
 	public static boolean yesOrNo(Scanner scnr) {
 		System.out.print(" y/n ");
 		String response = scnr.nextLine();
@@ -138,6 +150,7 @@ public class PointOfSaleApp {
 		return paymentType;
 		
 	}
+	
 	//public Product(String name, String category, String description, double price, boolean taxable)
 	private static void fillGeneralStore() {
 		generalStore.addProduct(new Product("Notebook", "Office", "College Ruled 1-Subject, 70 sheets", 1.19, true));

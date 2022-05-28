@@ -6,11 +6,20 @@ public class Catalog {
 	private int size;
 	public final double TAX_RATE = 0.06;
 	
+	/**
+	 * Basic constructor which sets the arraylist of product objects
+	 * as well as the size of the catalog
+	 */
 	public Catalog() {
 		products = new ArrayList<>();
 		size = products.size();
 	}
 	
+	/**
+	 * Printing method which prints out a formatted menu of catalog products
+	 * 
+	 * @TimeComplexity "O(n)"
+	 */
 	public void printCatalog() {
 		for(int i = 0; i < products.size(); i++) {
 			System.out.printf("\n%3d", i + 1);
@@ -20,6 +29,13 @@ public class Catalog {
 		System.out.println();
 	}
 	
+	/**
+	 * Adds a Product object type to the products ArrayList field
+	 * 
+	 * @param p Product to be added to class ArrayList field
+	 * @return true if the item is successfully added, false if item already exits
+	 * @TimeComplexity "O(n)"
+	 */
 	public boolean addProduct(Product p) {
 		if(products.indexOf(p) == -1) {
 			products.add(p);
@@ -30,6 +46,7 @@ public class Catalog {
 		return false;
 	}
 	
+	//getters and setters:
 	public ArrayList<Product> getProducts() {
 		return products;
 	}
