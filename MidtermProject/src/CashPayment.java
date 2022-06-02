@@ -13,7 +13,7 @@ public class CashPayment extends Payment {
 
 	// Fields
 	private double amountTendered; // Amount of cash customer paid with
-	private double change = 0; // change to be made
+	private double change; // change to be made
 
 	// Change amounts initialized to 0 in case none are needed to make change
 	private int twentyChange = 0;
@@ -34,6 +34,8 @@ public class CashPayment extends Payment {
 	 */
 	public CashPayment(Order order) {
 		super(order);
+		amountTendered = 0.0;
+		change = 0.0;
 		scnr = new Scanner(System.in);
 	}
 
@@ -44,15 +46,34 @@ public class CashPayment extends Payment {
 	 * @TimeComplexity "O(n)"
 	 */
 	public void pay() {
+		String in = "";
+		
+		while (amountTendered == 0.0) {
 
-		System.out.println("Enter the Amount: ");
-		amountTendered = scnr.nextDouble();
+			System.out.print("Enter the Amount: ");
+			in = scnr.nextLine();
+			
+			try {
+				amountTendered = Double.valueOf(in);
+			} catch (Exception e) {
+				System.out.println("\nCash amount must be in the form of a number");
+			}
+		}
+		
 		change = amountTendered - total;
 
+		// Loops until the order balance is met
 		while (change < 0) {
 			System.out.printf("\n The customer still owes $%.2f", (-1.0 * (float) change));
 			System.out.printf("\n\nEnter new amount of cash tendered: ");
-			amountTendered = scnr.nextDouble();
+			in = scnr.nextLine();
+			try {
+				amountTendered = Double.valueOf(in);
+			} catch (Exception e) {
+				System.out.println("\nCash amount must be in the form of a number");
+				continue;
+			}
+			//amountTendered = scnr.nextDouble();
 			change += amountTendered;
 		}
 
