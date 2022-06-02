@@ -9,6 +9,7 @@ public class Product {
 	private boolean taxable;
 	
 	//constructors:
+	public Product() {}
 	public Product(String name, String category, String description, double price, boolean taxable) {
 		setName(name);
 		setCategory(category);

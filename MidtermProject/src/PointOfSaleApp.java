@@ -1,13 +1,11 @@
 import java.util.Scanner;
 
 /**
- * PointOfSaleApp is the main class for the POS system. Collects user input for items
- * to add to the order, collects payment type and calls appropriate methods for completing
- * the order and printing the receipt
- * 
+ * PointOfSaleApp is the main class for the POS system. 
+ * Cashier on shift enters their name, facilitates customer transactions, or adds specials to the menu.
+ * Closing the register prints totals by type for balancing at end of shift.
  */
 public class PointOfSaleApp {
-	
 
 	private static Scanner scnr;
 	private static Catalog generalStore;
@@ -17,8 +15,60 @@ public class PointOfSaleApp {
 		generalStore = new Catalog();
 		scnr = new Scanner(System.in);
 		fillGeneralStore();
-		System.out.println("Welcome to our General Store!");
-		System.out.println("Here is the menu: ");
+		
+		System.out.print("Good morning! Please enter your Cashier ID: ");
+		Report report = new Report(scnr.nextLine());
+		cashierMenu(report);
+		
+	}
+	public static void cashierMenu(Report report) {
+		boolean repeatCashierMenu = true;
+		while (repeatCashierMenu) {
+			System.out.println("Select one:");
+			System.out.println("1  New Transaction");
+			System.out.println("2  Add Special sale item");
+			System.out.println("3  Close Register");
+			String in = scnr.nextLine();
+			if (!in.equals("1") && !in.equals("2") && !in.equals("3")) {
+				System.out.println("Invalid input, try again.");
+			} else if (in.equals("1")) {
+				transaction(report);
+			} else if (in.equals("2")) {
+				addSpecial();
+			} else {
+				report.printReport();
+				repeatCashierMenu = false;
+			}
+		}
+		
+	}
+	/**
+	 * addSpecials method prompts cashier to add extra products to the catalog
+	 * before opening the register.
+	 */
+	public static void addSpecial() {
+		Product special = new Product();
+		System.out.print("Enter product name: ");
+		special.setName(scnr.nextLine());
+		System.out.print("Enter product category: ");
+		special.setCategory(scnr.nextLine());
+		System.out.print("Enter product description: ");
+		special.setDescription(scnr.nextLine());
+		System.out.print("Enter product price (#.## format): ");
+		String priceString = scnr.nextLine();
+		double price = Double.parseDouble(priceString);
+		special.setPrice(price);
+		System.out.print("Is the product taxable?");
+		special.setTaxable(yesOrNo(scnr));
+		generalStore.addProduct(special);
+	}
+	
+	/**
+	 * transaction method collects user input for items
+	 * to add to the order, collects payment type and calls appropriate methods for completing
+	 * the order and printing the receipt 
+	 */
+	public static void transaction(Report report) {
 		generalStore.printCatalog();
 		
 		Order userOrder = new Order(generalStore);
@@ -35,6 +85,13 @@ public class PointOfSaleApp {
 		Payment payment = getPaymentType(userOrder);
 		payment.pay();
 		
+		if (userOrder.getPaymentType().equals("cash")) {
+			report.addToCash(userOrder.getRoundedTax() + userOrder.getSubtotal());
+		} else if (userOrder.getPaymentType().equals("check")) {
+			report.addToCheck(userOrder.getRoundedTax() + userOrder.getSubtotal());
+		} else if (userOrder.getPaymentType().equals("credit")) {
+			report.addToCredit(userOrder.getRoundedTax() + userOrder.getSubtotal());
+		}
 	}
 	
 	/**

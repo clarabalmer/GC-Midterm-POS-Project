@@ -10,6 +10,7 @@ public class CashPayment extends Payment {
 	static final int dimeValue = 10;
 	static final int nickelValue = 5;
 	static final int convertCoins = 100; // converts coin values to int
+	static final String paymentType = "cash";
 
 	// Fields
 	private double amountTendered; // Amount of cash customer paid with
@@ -34,6 +35,7 @@ public class CashPayment extends Payment {
 	 */
 	public CashPayment(Order order) {
 		super(order);
+		order.setPaymentType(paymentType);
 		scnr = new Scanner(System.in);
 	}
 

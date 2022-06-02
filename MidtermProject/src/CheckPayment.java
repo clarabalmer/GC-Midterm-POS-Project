@@ -5,6 +5,7 @@ public class CheckPayment extends Payment{
 	
 	private String CheckNumber;
 	private Scanner scnr;
+	static final String paymentType = "check";
 	
 	/**
 	 * Simple constructor initializing scanner and setting cost fields
@@ -13,7 +14,7 @@ public class CheckPayment extends Payment{
 	 */
 	CheckPayment(Order order) {
 		super(order);
-		
+		order.setPaymentType(paymentType);
 		scnr = new Scanner(System.in);
 	}
 	

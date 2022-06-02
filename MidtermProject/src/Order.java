@@ -6,6 +6,7 @@ public class Order {
 	private int[] orderQuantities;
 	private double subtotal;
 	private double totalTax;
+	private String paymentType;
 	
 	
 	/**
@@ -79,6 +80,14 @@ public class Order {
 	
 	public void setTotalTax(double totalTax) {
 		this.totalTax = totalTax;
+	}
+	
+	public String getPaymentType() {
+		return paymentType;
+	}
+	
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
 	}
 	
 }

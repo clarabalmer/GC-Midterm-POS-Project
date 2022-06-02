@@ -6,6 +6,7 @@ public class CreditCardPayment extends Payment {
 	private String ExpirationDate;
 	private String CreditCardNumber;
 	private String CCV;
+	static final String paymentType = "credit";
 	
 	Scanner scnr; 
 	
@@ -16,7 +17,7 @@ public class CreditCardPayment extends Payment {
 	 */
 	CreditCardPayment(Order order) {
 		super(order);
-		
+		order.setPaymentType(paymentType);
 		scnr = new Scanner(System.in);
 	}
 	
