@@ -4,7 +4,6 @@ public class Order {
 	//fields:
 	private Catalog catalog;
 	private int[] orderQuantities;
-	private Payment orderPayment; //do we need this here?
 	private double subtotal;
 	private double totalTax;
 	
@@ -21,33 +20,28 @@ public class Order {
 	
 	
 	/**
-	 * adds quantity to value at index ID in orderQuantities array
+	 * adds quantity to value at index (ID - 1) in orderQuantities array
+	 * adds price*quantity to subtotal
+	 * adds tax to totalTax
 	 * 
 	 * @param ID the index of the item in the catalog
 	 * @param quantity the quantity of item at index "ID" to be added to order
 	 */
 	public void addProduct(int ID, int quantity) {
 		orderQuantities[ID - 1] += quantity;
+		subtotal += quantity * (catalog.getProducts().get(ID - 1).getPrice());
+		if (catalog.getProducts().get(ID - 1).getTaxable()) {
+			totalTax += catalog.TAX_RATE * quantity * (catalog.getProducts().get(ID - 1).getPrice());
+		}
 	}
 	
 	
 	/**
-	 * prints ordered items and quantities, sums subtotal and tax, prints subtotal, totalTax, and total.
-	 * unneeded formatted print statements are commented out but saved for future use
+	 * prints grand total (rounded totalTax included)
 	 */
-	public void displaySummary() {
-		for (int i = 0; i < catalog.getProducts().size(); i++) {
-			if (orderQuantities[i] != 0) {
-				
-				subtotal += (orderQuantities[i] * catalog.getProducts().get(i).getPrice());
-				if (catalog.getProducts().get(i).getTaxable()) {
-					totalTax += catalog.TAX_RATE * orderQuantities[i] * catalog.getProducts().get(i).getPrice();
-				}
-			}
-		}
-	
+	public void displaySummary() {	
 		System.out.printf("%-36s", "      Total: ");
-		System.out.printf("$%6.2f\n", subtotal + totalTax);
+		System.out.printf("$%6.2f\n", subtotal + getRoundedTax());
 	}
 	
 	//getters and setters:
@@ -65,14 +59,6 @@ public class Order {
 	
 	public void setOrderQuantities(int[] orderQuantities) {
 		this.orderQuantities = orderQuantities;
-	}
-	
-	public Payment getOrderPayment() {
-		return orderPayment;
-	}
-	
-	public void setOrderPayment(Payment orderPayment) {
-		this.orderPayment = orderPayment;
 	}
 	
 	public double getSubtotal() {
