@@ -54,10 +54,17 @@ public class PointOfSaleApp {
 		special.setCategory(scnr.nextLine());
 		System.out.print("Enter product description: ");
 		special.setDescription(scnr.nextLine());
-		System.out.print("Enter product price (#.## format): ");
-		String priceString = scnr.nextLine();
-		double price = Double.parseDouble(priceString);
-		special.setPrice(price);
+		double price = 0;
+		while (price == 0) {
+			System.out.print("Enter product price (#.## format): ");
+			String priceString = scnr.nextLine();
+			try {
+				price = Double.parseDouble(priceString);
+				special.setPrice(price);
+			} catch (NumberFormatException e) {
+				System.out.println("Wrong format! Try again.");
+			}
+		}
 		System.out.print("Is the product taxable?");
 		special.setTaxable(yesOrNo(scnr));
 		generalStore.addProduct(special);
