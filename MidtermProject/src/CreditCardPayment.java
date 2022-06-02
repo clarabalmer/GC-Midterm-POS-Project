@@ -2,10 +2,6 @@ import java.util.Scanner;
 
 public class CreditCardPayment extends Payment {
 	
-	//public String creditcardnumber;
-	//public String experationdate;
-	//public String CVV;
-	
 	private String CardName; 
 	private String ExpirationDate;
 	private String CreditCardNumber;
@@ -51,6 +47,16 @@ public class CreditCardPayment extends Payment {
 		ExpirationDate =scnr.nextLine();
 		
 		printReceipt();
+	}
+	
+	public void printReceipt() {
+		super.printReceipt();
+		System.out.printf("%12s%31.2f%n", "Credit Tend", total);
+		System.out.printf("%7s%36.2f%n%n", "Change", 0.00);
+		System.out.printf("%10s%33s%n", "Account #", ("****-****-****-" + (CreditCardNumber.length() - 6)));
+		System.out.println("--------------------------------------------\n");
+		System.out.printf("%n%27s%n", "Thank You!");
+
 	}
 
 }

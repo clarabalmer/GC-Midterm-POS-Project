@@ -34,4 +34,13 @@ public class CheckPayment extends Payment{
 		printReceipt();
 		
 	}
+	
+	public void printReceipt() {
+		super.printReceipt();
+		System.out.printf("%6s%37.2f%n", "Check Amt", total);
+		System.out.printf("%7s%36.2f%n", "Change", 0.00);
+		System.out.println("--------------------------------------------\n");
+		System.out.printf("%n%27s%n", "Thank You!");
+
+	}
 }

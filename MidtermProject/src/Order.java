@@ -38,10 +38,6 @@ public class Order {
 	public void displaySummary() {
 		for (int i = 0; i < catalog.getProducts().size(); i++) {
 			if (orderQuantities[i] != 0) {
-				//System.out.printf("%3d", orderQuantities[i]);
-				//System.out.print(" x ");
-				//System.out.printf("%-30s", catalog.getProducts().get(i).getName());
-				//System.out.printf("$%6.2f\n", (orderQuantities[i] * catalog.getProducts().get(i).getPrice()));
 				
 				subtotal += (orderQuantities[i] * catalog.getProducts().get(i).getPrice());
 				if (catalog.getProducts().get(i).getTaxable()) {
@@ -49,11 +45,7 @@ public class Order {
 				}
 			}
 		}
-		//System.out.println("===========================================");
-		//System.out.printf("%-36s", "      Subtotal: ");
-		//System.out.printf("$%6.2f\n", subtotal);
-		//System.out.printf("%-36s", "      Tax: ");
-		//System.out.printf("$%6.2f\n", totalTax);
+	
 		System.out.printf("%-36s", "      Total: ");
 		System.out.printf("$%6.2f\n", subtotal + totalTax);
 	}
@@ -93,6 +85,10 @@ public class Order {
 	
 	public double getTotalTax() {
 		return totalTax;
+	}
+	
+	public double getRoundedTax() {
+		return Math.round(getTotalTax() * 100.0) / 100.0;
 	}
 	
 	public void setTotalTax(double totalTax) {

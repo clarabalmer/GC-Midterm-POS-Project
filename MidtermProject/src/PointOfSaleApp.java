@@ -106,8 +106,8 @@ public class PointOfSaleApp {
 				System.out.println("Error: Invalid quantity entered.\n");
 			}
 			
-			if(quantity < 1) {
-				System.out.println("Quantity must be a number greater than 0");
+			if(quantity < 0) {
+				System.out.println("Quantity must be positive");
 			}
 			
 		} while (quantity < 1);

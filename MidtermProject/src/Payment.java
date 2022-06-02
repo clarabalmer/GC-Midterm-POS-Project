@@ -16,7 +16,7 @@ public abstract class Payment {
 	 */
 	public Payment(Order order) {
 		this.order = order;
-		taxAmount = order.getTotalTax();
+		taxAmount = order.getRoundedTax();
 		subtotal = order.getSubtotal();
 		total = taxAmount+subtotal;
 	}
@@ -57,7 +57,6 @@ public abstract class Payment {
 		System.out.printf("%9s%34.2f%n", "Subtotal", subtotal);
 		System.out.printf("%4s%39.2f%n", "Tax", taxAmount);
 		System.out.printf("%6s%37.2f%n", "Total", total);
-		System.out.println("--------------------------------------------\n");
 	}
 		
 	
