@@ -27,14 +27,17 @@ public class PointOfSaleApp {
 			System.out.println("Select one:");
 			System.out.println("1  New Transaction");
 			System.out.println("2  Add Special sale item");
-			System.out.println("3  Close Register");
+			System.out.println("3  Refunds");
+			System.out.println("4  Close Register");
 			String in = scnr.nextLine();
-			if (!in.equals("1") && !in.equals("2") && !in.equals("3")) {
+			if (!in.equals("1") && !in.equals("2") && !in.equals("3") && !in.equals("4")) {
 				System.out.println("Invalid input, try again.");
 			} else if (in.equals("1")) {
 				transaction(report);
 			} else if (in.equals("2")) {
 				addSpecial();
+			} else if (in.equals("3")) {
+				refund(report);
 			} else {
 				report.printReport();
 				repeatCashierMenu = false;
@@ -69,7 +72,38 @@ public class PointOfSaleApp {
 		special.setTaxable(yesOrNo(scnr));
 		generalStore.addProduct(special);
 	}
-	
+	public static void refund(Report report) {
+		generalStore.printRefundCatalog();
+		
+		Order userRefund = new Order(generalStore);
+		
+		boolean repeatRefunding = true;
+		while (repeatRefunding) {
+			int menuChoice = getItemNum(generalStore);
+			if (menuChoice != 0) {
+				userRefund.addProduct(menuChoice, -1 * getQuantity());
+			} else {
+				repeatRefunding = false;
+			}
+		}
+		
+		if (userRefund.getSubtotal() < 0) {
+			userRefund.displaySummary();
+			
+			Payment payment = getPaymentType(userRefund);
+			payment.pay();
+			
+			if (userRefund.getPaymentType().equals("cash")) {
+				report.addToCash(userRefund.getRoundedTax() + userRefund.getSubtotal());
+			} else if (userRefund.getPaymentType().equals("check")) {
+				report.addToCheck(userRefund.getRoundedTax() + userRefund.getSubtotal());
+			} else if (userRefund.getPaymentType().equals("credit")) {
+				report.addToCredit(userRefund.getRoundedTax() + userRefund.getSubtotal());
+			}
+		} else {
+			System.out.println("********** Transaction Cancelled **********\n");
+		}
+	}
 	/**
 	 * transaction method collects user input for items
 	 * to add to the order, collects payment type and calls appropriate methods for completing
@@ -90,18 +124,28 @@ public class PointOfSaleApp {
 			}
 		}
 		
-		userOrder.displaySummary();
-		
-		Payment payment = getPaymentType(userOrder);
-		payment.pay();
-		
-		if (userOrder.getPaymentType().equals("cash")) {
-			report.addToCash(userOrder.getRoundedTax() + userOrder.getSubtotal());
-		} else if (userOrder.getPaymentType().equals("check")) {
-			report.addToCheck(userOrder.getRoundedTax() + userOrder.getSubtotal());
-		} else if (userOrder.getPaymentType().equals("credit")) {
-			report.addToCredit(userOrder.getRoundedTax() + userOrder.getSubtotal());
+		if (userOrder.getSubtotal() > 0) {
+			userOrder.displaySummary();
+			Payment payment = getPaymentType(userOrder);
+			payment.pay();
+			
+			if (userOrder.getPaymentType().equals("cash")) {
+				report.addToCash(userOrder.getRoundedTax() + userOrder.getSubtotal());
+			} else if (userOrder.getPaymentType().equals("check")) {
+				report.addToCheck(userOrder.getRoundedTax() + userOrder.getSubtotal());
+			} else if (userOrder.getPaymentType().equals("credit")) {
+				report.addToCredit(userOrder.getRoundedTax() + userOrder.getSubtotal());
+			} else if (userOrder.getPaymentType().equalsIgnoreCase("ebt")) {
+				if (payment.getValidTransaction()) {
+					report.addToEBT(userOrder.getSubtotal());
+				}
+			}
+			
+		} else {
+			System.out.println("********** Transaction Cancelled **********\\n");
 		}
+		
+		
 	}
 	
 	/**
@@ -193,15 +237,15 @@ public class PointOfSaleApp {
 		do {
 			
 			try {
-				System.out.print("Please enter payment method (cash, card, or check): ");
+				System.out.print("Please enter payment method (cash, card, EBT, or check): ");
 				in = scnr.nextLine().toLowerCase();
 			} catch(Exception e) {}
 			
-			if(!in.equals("cash") && !in.equals("card") && !in.equals("check")) {
+			if(!in.equals("cash") && !in.equals("card") && !in.equalsIgnoreCase("EBT") && !in.equals("check")) {
 				System.out.println("We only accept cash, card, and check\n");
 			}
 			
-		} while (!in.equals("cash") && !in.equals("card") && !in.equals("check"));
+		} while (!in.equals("cash") && !in.equals("card") && !in.equalsIgnoreCase("EBT") && !in.equals("check"));
 		
 		
 		if(in.equals("cash")) {
@@ -209,8 +253,9 @@ public class PointOfSaleApp {
 		}
 		else if(in.equals("card")) {
 			paymentType = new CreditCardPayment(order);
-		}
-		else {
+		} else if (in.equalsIgnoreCase("EBT")) {
+			paymentType = new EBTPayment(order);
+		} else {
 			paymentType = new CheckPayment(order);
 		}
 		

@@ -7,6 +7,7 @@ public abstract class Payment {
 	protected double subtotal;
 	protected double total;
 	protected Order order;
+	protected boolean validTransaction = true;
 
 	
 	/**
@@ -64,6 +65,14 @@ public abstract class Payment {
 	public String toString() {
 		return "Payment [taxAmount=" + taxAmount + "] [total=" + total + "] subtotal=" + subtotal + "]";
 
+	}
+	
+	//getters/setters
+	public boolean getValidTransaction() {
+		return validTransaction;
+	}
+	public void setValidTransaction(boolean validTransaction) {
+		this.validTransaction = validTransaction;
 	}
 
 }
