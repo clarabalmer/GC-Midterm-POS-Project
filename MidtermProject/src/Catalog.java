@@ -21,8 +21,9 @@ public class Catalog {
 	 * @TimeComplexity "O(n)"
 	 */
 	public void printCatalog() {
+		System.out.print("0   | Finish Order");
 		for(int i = 0; i < products.size(); i++) {
-			System.out.printf("\n%3d", i + 1);
+			System.out.printf("\n%-3s", i + 1);
 			System.out.printf("%-33s", " | " + products.get(i).getName());
 			System.out.printf("$%6.2f", products.get(i).getPrice());
 		}

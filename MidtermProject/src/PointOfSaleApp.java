@@ -82,9 +82,12 @@ public class PointOfSaleApp {
 		
 		boolean repeatOrder = true;
 		while (repeatOrder) {
-		userOrder.addProduct(getItemNum(generalStore), getQuantity());
-		System.out.print("Would you like to order more?");
-		repeatOrder = yesOrNo(scnr);
+			int menuChoice = getItemNum(generalStore);
+			if (menuChoice != 0) {
+				userOrder.addProduct(menuChoice, getQuantity());
+			} else {
+				repeatOrder = false;
+			}
 		}
 		
 		userOrder.displaySummary();
@@ -142,11 +145,11 @@ public class PointOfSaleApp {
 				System.out.println("Error: Invalid item selection.\n");
 			}
 			
-			if(itemNum < 1 || itemNum > catalog.getSize()) {
+			if(itemNum < 0 || itemNum > catalog.getSize()) {
 				System.out.println("Item number must exist on item list");
 			}
 			
-		} while (itemNum < 1 || itemNum > catalog.getSize());
+		} while (itemNum < 0 || itemNum > catalog.getSize());
 		
 		return itemNum;
 	}
@@ -174,7 +177,7 @@ public class PointOfSaleApp {
 				System.out.println("Quantity must be positive");
 			}
 			
-		} while (quantity < 1);
+		} while (quantity < 0);
 		return quantity;
 	}
 	
