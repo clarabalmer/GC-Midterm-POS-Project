@@ -89,6 +89,7 @@ public class PointOfSaleApp {
 		
 		if (userRefund.getSubtotal() < 0) {
 			userRefund.displaySummary();
+			
 			Payment payment = getPaymentType(userRefund);
 			payment.pay();
 			
@@ -134,6 +135,10 @@ public class PointOfSaleApp {
 				report.addToCheck(userOrder.getRoundedTax() + userOrder.getSubtotal());
 			} else if (userOrder.getPaymentType().equals("credit")) {
 				report.addToCredit(userOrder.getRoundedTax() + userOrder.getSubtotal());
+			} else if (userOrder.getPaymentType().equalsIgnoreCase("ebt")) {
+				if (payment.getValidTransaction()) {
+					report.addToEBT(userOrder.getSubtotal());
+				}
 			}
 			
 		} else {
@@ -232,15 +237,15 @@ public class PointOfSaleApp {
 		do {
 			
 			try {
-				System.out.print("Please enter payment method (cash, card, or check): ");
+				System.out.print("Please enter payment method (cash, card, EBT, or check): ");
 				in = scnr.nextLine().toLowerCase();
 			} catch(Exception e) {}
 			
-			if(!in.equals("cash") && !in.equals("card") && !in.equals("check")) {
+			if(!in.equals("cash") && !in.equals("card") && !in.equalsIgnoreCase("EBT") && !in.equals("check")) {
 				System.out.println("We only accept cash, card, and check\n");
 			}
 			
-		} while (!in.equals("cash") && !in.equals("card") && !in.equals("check"));
+		} while (!in.equals("cash") && !in.equals("card") && !in.equalsIgnoreCase("EBT") && !in.equals("check"));
 		
 		
 		if(in.equals("cash")) {
@@ -248,8 +253,9 @@ public class PointOfSaleApp {
 		}
 		else if(in.equals("card")) {
 			paymentType = new CreditCardPayment(order);
-		}
-		else {
+		} else if (in.equalsIgnoreCase("EBT")) {
+			paymentType = new EBTPayment(order);
+		} else {
 			paymentType = new CheckPayment(order);
 		}
 		

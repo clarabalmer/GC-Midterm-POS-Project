@@ -14,6 +14,8 @@ public class Report {
 	private int creditTransactions = 0;
 	private double checkTotal;
 	private int checkTransactions = 0;
+	private double EBTTotal;
+	private int EBTTransactions = 0;
 	
 	//Constructor:
 	public Report(String cashierName) {
@@ -32,6 +34,10 @@ public class Report {
 	public void addToCheck(double check) {
 		checkTotal += check;
 		checkTransactions++;
+	}
+	public void addToEBT(double EBT) {
+		EBTTotal += EBT;
+		EBTTransactions++;
 	}
 	public void printReport() {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -56,6 +62,11 @@ public class Report {
 			System.out.printf(" %-7d", checkTransactions); 
 			System.out.printf("%-23s", "check");
 			System.out.printf("%12.2f%n", checkTotal);
+		}
+		if (EBTTransactions > 0) {
+			System.out.printf(" %-7d", EBTTransactions); 
+			System.out.printf("%-23s", "EBT");
+			System.out.printf("%12.2f%n", EBTTotal);
 		}
 	}
 	
@@ -102,5 +113,17 @@ public class Report {
 	}
 	public void setCheckTransactions(int checkTransactions) {
 		this.checkTransactions = checkTransactions;
+	}
+	public double getEBTTotal() {
+		return EBTTotal;
+	}
+	public void setEBTTotal(double EBTTotal) {
+		this.EBTTotal = EBTTotal;
+	}
+	public int getEBTTransactions() {
+		return EBTTransactions;
+	}
+	public void setEBTTransactions(int EBTTransactions) {
+		this.EBTTransactions = EBTTransactions;
 	}
 }

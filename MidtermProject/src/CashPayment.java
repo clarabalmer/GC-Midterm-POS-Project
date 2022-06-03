@@ -36,7 +36,7 @@ public class CashPayment extends Payment {
 	public CashPayment(Order order) {
 		super(order);
 		order.setPaymentType(paymentType);
-		amountTendered = 0.0;
+		amountTendered = -0.01;
 		change = 0.0;
 		scnr = new Scanner(System.in);
 	}
@@ -50,7 +50,7 @@ public class CashPayment extends Payment {
 	public void pay() {
 		String in = "";
 		
-		while (amountTendered == 0.0) {
+		while (amountTendered < 0.0) {
 
 			System.out.print("Enter the Amount: ");
 			in = scnr.nextLine();
