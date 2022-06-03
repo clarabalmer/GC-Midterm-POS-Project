@@ -67,10 +67,10 @@ public class CreditCardPayment extends Payment {
 			ccvmatcher = ccvpattern.matcher(CCV);
 		}
 
-		System.out.println("Please enter Expiration Date YY/MM: ");
+		System.out.println("Please enter Expiration Date MM/YY: ");
 		ExpirationDate = scnr.nextLine();
 
-		String ExpirationDateRegex = "/\\b(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})\\b/";
+		String ExpirationDateRegex = "\\b(0[1-9]|1[0-2])\\/?([0-9]{4}|[0-9]{2})\\b";
 
 		Pattern ExpirationDatepattern = Pattern.compile(ExpirationDateRegex);
 		ExpirationDate = ExpirationDate.replaceAll("/", "");
@@ -89,7 +89,7 @@ public class CreditCardPayment extends Payment {
 		super.printReceipt();
 		System.out.printf("%12s%31.2f%n", "Credit Tend", total);
 		System.out.printf("%7s%36.2f%n%n", "Change", 0.00);
-		System.out.printf("%10s%33s%n", "Account #", ("****-****-****-" + (CreditCardNumber.length() - 6)));
+		System.out.printf("%10s%33s%n", "Account #", (CreditCardNumber.substring(CreditCardNumber.length() - 4)));
 		System.out.println("--------------------------------------------\n");
 		System.out.printf("%n%27s%n", "Thank You! " + CardName);
 
