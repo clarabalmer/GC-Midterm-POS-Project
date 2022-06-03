@@ -56,7 +56,7 @@ public class CreditCardPayment extends Payment {
 		System.out.println("Please enter your Credit Card Security Code: ");
 		CCV = scnr.nextLine();
 
-		String CcvRegex = "/^[0-9]{3,4}$/";
+		String CcvRegex = "^[0-9]{3,4}$";
 
 		Pattern ccvpattern = Pattern.compile(CcvRegex);
 
@@ -75,9 +75,12 @@ public class CreditCardPayment extends Payment {
 		Pattern ExpirationDatepattern = Pattern.compile(ExpirationDateRegex);
 		ExpirationDate = ExpirationDate.replaceAll("/", "");
 		Matcher ExpirationDatematcher = ExpirationDatepattern.matcher(ExpirationDate);
-		while (!ExpirationDatematcher.matches())
-			;
-		System.out.println("Invalid Expiration Date please enter again: ");
+		while (!ExpirationDatematcher.matches()) {
+			System.out.println("Invalid Expiration Date please enter again: ");
+			ExpirationDate = scnr.nextLine();
+			ExpirationDatematcher = ExpirationDatepattern.matcher(ExpirationDate);
+
+		}
 
 		printReceipt();
 	}
