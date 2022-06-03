@@ -29,7 +29,16 @@ public class Catalog {
 		}
 		System.out.println();
 	}
-	
+	public void printRefundCatalog() {
+		System.out.println("***************** REFUNDS *****************");
+		System.out.print("0   | Finish Refund");
+		for(int i = 0; i < products.size(); i++) {
+			System.out.printf("\n%-3s", i + 1);
+			System.out.printf("%-33s", " | " + products.get(i).getName());
+			System.out.printf("$%6.2f", -1 * products.get(i).getPrice());
+		}
+		System.out.println();
+	}
 	/**
 	 * Adds a Product object type to the products ArrayList field
 	 * 
