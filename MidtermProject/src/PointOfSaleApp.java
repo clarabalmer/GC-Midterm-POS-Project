@@ -24,7 +24,7 @@ public class PointOfSaleApp {
 	public static void cashierMenu(Report report) {
 		boolean repeatCashierMenu = true;
 		while (repeatCashierMenu) {
-			System.out.println("Select one:");
+			System.out.println("\nSelect one:");
 			System.out.println("1  New Transaction");
 			System.out.println("2  Add Special sale item");
 			System.out.println("3  Refunds");

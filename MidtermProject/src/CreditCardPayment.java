@@ -88,8 +88,8 @@ public class CreditCardPayment extends Payment {
 	public void printReceipt() {
 		super.printReceipt();
 		System.out.printf("%12s%31.2f%n", "Credit Tend", total);
-		System.out.printf("%7s%36.2f%n%n", "Change", 0.00);
-		System.out.printf("%10s%33s%n", "Account #", (CreditCardNumber.substring(CreditCardNumber.length() - 4)));
+//		System.out.printf("%7s%36.2f%n%n", "Change", 0.00);
+		System.out.printf("%10s%33s%n", "Account #", "************" + (CreditCardNumber.substring(CreditCardNumber.length() - 4)));
 		System.out.println("--------------------------------------------\n");
 		System.out.printf("%n%27s%n", "Thank You! " + CardName);
 

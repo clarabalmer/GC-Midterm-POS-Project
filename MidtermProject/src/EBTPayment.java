@@ -1,5 +1,6 @@
-import java.io.Console;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EBTPayment extends Payment {
 	
@@ -22,8 +23,29 @@ public class EBTPayment extends Payment {
 		} else {
 			System.out.print("Please enter the card number: ");
 			EBTCardNumber = scnr.nextLine();
+			
+			String EBTNumberRegex = "\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d";
+			
+			Pattern EBTpat = Pattern.compile(EBTNumberRegex);
+			
+			Matcher EBTmatch = EBTpat.matcher(EBTCardNumber);
+			while (!EBTmatch.matches()) {
+				System.out.println("Invalid card number, please try again: ");
+				EBTCardNumber = scnr.nextLine();
+				EBTmatch = EBTpat.matcher(EBTCardNumber);
+			}
+			
 			System.out.print("Please enter your PIN: ");
 			PIN = scnr.nextLine();
+			
+			String PINRegex = "\\d\\d\\d\\d";
+			Pattern PINpat = Pattern.compile(PINRegex);
+			Matcher PINmatch = PINpat.matcher(PIN);
+			while (!PINmatch.matches()) {
+				System.out.println("Invalid PIN, please try again: ");
+				PIN = scnr.nextLine();
+				PINmatch = PINpat.matcher(PIN);
+			}
 			
 			printReceipt();
 		}
@@ -31,7 +53,9 @@ public class EBTPayment extends Payment {
 	
 	public void printReceipt() {
 		super.printReceipt();
-		//more stuff here
-		
+		System.out.printf("%4s%39.2f%n", "EBT", total);
+		System.out.printf("%10s%31s%n", "Account #", "************" + (EBTCardNumber.substring(EBTCardNumber.length() - 4)));
+		System.out.println("--------------------------------------------\n");
+		System.out.printf("%n%27s%n", "Thank You!");
 	}
 }
