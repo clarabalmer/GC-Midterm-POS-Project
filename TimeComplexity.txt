@@ -1,0 +1,4 @@
+Slowest method: Catalog.addProduct(Product p)
+Time Complexity: O(n)
+
+This method can not be made any faster, the reason is due to the ArrayList.indexOf() method which uses O(n) time worst case.
