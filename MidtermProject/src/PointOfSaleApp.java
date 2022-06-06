@@ -185,7 +185,7 @@ public class PointOfSaleApp {
 				userNumString = scnr.nextLine();
 				itemNum = Integer.parseInt(userNumString);
 			}catch(Exception e) {
-				scnr.next();
+				//scnr.next();
 				System.out.println("Error: Invalid item selection.\n");
 			}
 			
@@ -213,7 +213,7 @@ public class PointOfSaleApp {
 				userQuantString = scnr.nextLine();
 				quantity = Integer.parseInt(userQuantString);
 			}catch(Exception e) {
-				scnr.next();
+				//scnr.next();
 				System.out.println("Error: Invalid quantity entered.\n");
 			}
 			
